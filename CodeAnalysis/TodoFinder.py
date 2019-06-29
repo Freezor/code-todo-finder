@@ -4,7 +4,7 @@ from CodeAnalysis.ReportWriter import ReportWriter
 from CodeAnalysis.TaskExtractor import TaskExtractor
 
 
-def main():
+def TodoFinder():
     print("START FILE READING")
     reader = DirectoryReader(config.directory_path)
     files = reader.read_all_files()
@@ -19,4 +19,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    TodoFinder()
