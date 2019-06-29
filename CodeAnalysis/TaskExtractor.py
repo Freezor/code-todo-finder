@@ -21,7 +21,7 @@ class TaskExtractor():
             for line in f:
                 for pattern in config.task_occasions:
                     if re.search(pattern, line, re.IGNORECASE):
-                        #TODO: Line delete leerzeilen am anfang
+                        line = line.lstrip()
                         extracted_tasks.append(
                             {'filename': file['file'], 'task': line, 'line': line_number, 'path': file['path']})
                 line_number += 1
