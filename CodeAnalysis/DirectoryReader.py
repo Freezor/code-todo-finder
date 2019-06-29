@@ -1,4 +1,4 @@
-import glob, os
+import os
 import config
 
 # Reader class for reading all files in starting directory and all sub-directories
