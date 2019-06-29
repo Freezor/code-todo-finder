@@ -3,8 +3,10 @@ import config
 from CodeAnalysis.ReportWriter import ReportWriter
 from CodeAnalysis.TaskExtractor import TaskExtractor
 
-
 def TodoFinder():
+    """
+    Main Method, that reads all given files, searches for Tasks in each chosen file type and exporting them to csv
+    """
     print("START FILE READING")
     reader = DirectoryReader(config.directory_path)
     files = reader.read_all_files()
@@ -13,7 +15,7 @@ def TodoFinder():
     extracted_tasks = taskExtractor.extract_tasks()
     print("EXTRACTED %s TASKS" % len(extracted_tasks))
     report_writer = ReportWriter(config.export_file_name, config.delimiter)
-    report_writer.write_dicitionary(extracted_tasks)
+    report_writer.write_dictionary(extracted_tasks)
     print("TASKS SAVED TO CSV FILE")
     print('END OF SCRIPT')
 

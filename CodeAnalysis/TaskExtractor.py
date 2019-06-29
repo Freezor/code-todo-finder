@@ -7,21 +7,26 @@ class TaskExtractor():
         self.files = file_dictionary
 
     def extract_tasks(self):
+        """
+        Searches in each file for occuring patterns and saves them in a dictionary
+        :return: list of dictionaries with all found tasks
+        """
         print("Start processing files")
         extracted_tasks = []
-        fileamount = len(self.files)
-        processedfiles = 0
+        amount_of_files = len(self.files)
+        amount_of_processed_files = 0
         for file in self.files:
             f = open(file['path'], "r")
-            linenumber = 1
+            line_number = 1
             for line in f:
-                for taskpattern in config.task_occasions:
-                    if re.search(taskpattern, line, re.IGNORECASE):
+                for pattern in config.task_occasions:
+                    if re.search(pattern, line, re.IGNORECASE):
+                        #TODO: Line delete leerzeilen am anfang
                         extracted_tasks.append(
-                            {'filename': file['file'], 'task': line, 'line': linenumber, 'path': file['path']})
-                linenumber += 1
-            processedfiles += 1
-            percentage = abs(processedfiles / fileamount)*100.0
+                            {'filename': file['file'], 'task': line, 'line': line_number, 'path': file['path']})
+                line_number += 1
+            amount_of_processed_files += 1
+            percentage = abs(amount_of_processed_files / amount_of_files)*100.0
             if percentage > 1:
                 print("Processed %s percentage of all files" % percentage)
         return extracted_tasks

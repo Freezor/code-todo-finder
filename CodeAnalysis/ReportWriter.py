@@ -6,7 +6,11 @@ class ReportWriter():
         self.fileName = file_name
         self.delimiter = delimiter
 
-    def write_dicitionary(self, dictionary):
+    def write_dictionary(self, dictionary):
+        """
+        Creates a new csv file, with all dictionary values from the param list
+        :param dictionary:
+        """
         f = open(self.fileName, 'wb')
         try:
             keys = dictionary[0].keys()
