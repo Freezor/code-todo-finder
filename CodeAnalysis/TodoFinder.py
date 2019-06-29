@@ -11,12 +11,14 @@ def TodoFinder():
     reader = DirectoryReader(config.directory_path)
     files = reader.read_all_files()
     print("FOUND %s FILES" % len(files))
-    taskExtractor = TaskExtractor(files)
-    extracted_tasks = taskExtractor.extract_tasks()
-    print("EXTRACTED %s TASKS" % len(extracted_tasks))
-    report_writer = ReportWriter(config.export_file_name, config.delimiter)
-    report_writer.write_dictionary(extracted_tasks)
-    print("TASKS SAVED TO CSV FILE")
+    if len(files)>0:
+        taskExtractor = TaskExtractor(files)
+        extracted_tasks = taskExtractor.extract_tasks()
+        print("EXTRACTED %s TASKS" % len(extracted_tasks))
+        if len(extracted_tasks)>0:
+            report_writer = ReportWriter(config.export_file_name, config.delimiter)
+            report_writer.write_dictionary(extracted_tasks)
+            print("TASKS SAVED TO CSV FILE")
     print('END OF SCRIPT')
 
 
